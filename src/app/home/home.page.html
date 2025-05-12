@@ -1,20 +1,74 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Información del Teléfono</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <!-- Sección: Dispositivo -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>📱 Dispositivo</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Modelo</ion-label>
+          <ion-note slot="end">{{ deviceInfo.model || '-' }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Fabricante</ion-label>
+          <ion-note slot="end">{{ deviceInfo.manufacturer || '-' }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Plataforma</ion-label>
+          <ion-note slot="end">{{ deviceInfo.platform || '-' }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Versión OS</ion-label>
+          <ion-note slot="end">{{ deviceInfo.osVersion || '-' }}</ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Sección: Red -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>🌐 Red</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Conectado</ion-label>
+          <ion-note slot="end">{{ networkStatus.connected ? 'Sí' : 'No' }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tipo</ion-label>
+          <ion-note slot="end">{{ networkStatus.connectionType || '-' }}</ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Sección: Ubicación -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>📍 Ubicación</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Latitud</ion-label>
+          <ion-note slot="end">{{ location.lat || '-' }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Longitud</ion-label>
+          <ion-note slot="end">{{ location.lon || '-' }}</ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
