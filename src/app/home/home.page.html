@@ -1,74 +1,89 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Información del Teléfono</ion-title>
+  <ion-toolbar color="tertiary">
+    <ion-title>📊 Detalles del Sistema</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
-  <!-- Sección: Dispositivo -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>📱 Dispositivo</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-label>Modelo</ion-label>
-          <ion-note slot="end">{{ deviceInfo.model || '-' }}</ion-note>
-        </ion-item>
-        <ion-item>
-          <ion-label>Fabricante</ion-label>
-          <ion-note slot="end">{{ deviceInfo.manufacturer || '-' }}</ion-note>
-        </ion-item>
-        <ion-item>
-          <ion-label>Plataforma</ion-label>
-          <ion-note slot="end">{{ deviceInfo.platform || '-' }}</ion-note>
-        </ion-item>
-        <ion-item>
-          <ion-label>Versión OS</ion-label>
-          <ion-note slot="end">{{ deviceInfo.osVersion || '-' }}</ion-note>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+  <!-- Información General -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Información del Dispositivo</ion-card-subtitle>
+            <ion-card-title>🧩 Sistema Operativo</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list lines="none">
+              <ion-item>
+                <ion-label>Plataforma</ion-label>
+                <ion-note slot="end">{{ deviceInfo.platform || '-' }}</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Versión</ion-label>
+                <ion-note slot="end">{{ deviceInfo.osVersion || '-' }}</ion-note>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-  <!-- Sección: Red -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>🌐 Red</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-label>Conectado</ion-label>
-          <ion-note slot="end">{{ networkStatus.connected ? 'Sí' : 'No' }}</ion-note>
-        </ion-item>
-        <ion-item>
-          <ion-label>Tipo</ion-label>
-          <ion-note slot="end">{{ networkStatus.connectionType || '-' }}</ion-note>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+      <!-- Información de Red -->
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Estado Actual</ion-card-subtitle>
+            <ion-card-title>🌐 Conectividad</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list lines="none">
+              <ion-item>
+                <ion-label>¿En línea?</ion-label>
+                <ion-toggle
+                  slot="end"
+                  [checked]="networkStatus.connected"
+                  disabled
+                ></ion-toggle>
+              </ion-item>
+              <ion-item>
+                <ion-label>Tipo de Conexión</ion-label>
+                <ion-chip color="success">
+                  {{ networkStatus.connectionType || 'Desconocido' }}
+                </ion-chip>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-  <!-- Sección: Ubicación -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>📍 Ubicación</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-label>Latitud</ion-label>
-          <ion-note slot="end">{{ location.lat || '-' }}</ion-note>
-        </ion-item>
-        <ion-item>
-          <ion-label>Longitud</ion-label>
-          <ion-note slot="end">{{ location.lon || '-' }}</ion-note>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+    <!-- Ubicación -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Geolocalización</ion-card-subtitle>
+            <ion-card-title>📍 Coordenadas GPS</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <strong>Latitud:</strong>
+                  <p>{{ location.lat || 'No disponible' }}</p>
+                </ion-col>
+                <ion-col>
+                  <strong>Longitud:</strong>
+                  <p>{{ location.lon || 'No disponible' }}</p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
